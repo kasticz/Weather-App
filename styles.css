@@ -268,8 +268,9 @@ input[name = text]{
     top: 30vh;
 }
 .showWidget{
-    position: relative;
-    bottom: -100px;
+    left: 600px;
+    width: 500px;
+    height: 100px;
 }
 
 
