@@ -47,18 +47,18 @@ async function getData(e){
 
 
 let status = false;
-setTimeout(() => {
-    if (!status){
-        alert(`Что то пошло не так. Убедитесь, что город введён корректно или попробуйте  ещё раз. Если не поможет - убедитесь, что у вас работает ВПН или воспользуйтесь кнопкой показа работы приложения без ВПН.`)
-        clearInterval(changeColorInterval)
-        clearInterval(moveArrowInterval)    
-        while(Math.abs(arrowPos % 360) != 0){
-            arrowPos++;
-        }
-        arrow.style.transform = `translate(0,-80%) rotate(${arrowPos}deg)`   
-    }
-}, 7000);
-let geoResp = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIKEY}`,{
+// setTimeout(() => {
+//     if (!status){
+//         alert(`Что то пошло не так. Убедитесь, что город введён корректно или попробуйте  ещё раз. Если не поможет - убедитесь, что у вас работает ВПН или воспользуйтесь кнопкой показа работы приложения без ВПН.`)
+//         clearInterval(changeColorInterval)
+//         clearInterval(moveArrowInterval)    
+//         while(Math.abs(arrowPos % 360) != 0){
+//             arrowPos++;
+//         }
+//         arrow.style.transform = `translate(0,-80%) rotate(${arrowPos}deg)`   
+//     }
+// }, 7000);
+let geoResp = await fetch(`https://pika-secret-ocean-49799.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIKEY}`,{
     method: "GET",
     origin: "CORS"
 })
@@ -336,7 +336,6 @@ function changeColorToFinal(elems,finalTemp){
         }
     }    
 }
-
 function moveArrowFinal(){
     while(Math.abs(arrowPos % 360) != 0){
         arrowPos++;
@@ -372,15 +371,15 @@ function copyWidgetCode(e){
 }
 form.addEventListener(`submit`,getData)
 
-const altWorkButton = document.querySelector(`.altWork`)
-altWorkButton.addEventListener(`click`,altWork)
+// const altWorkButton = document.querySelector(`.altWork`)
+// altWorkButton.addEventListener(`click`,altWork)
 
 function altWork(){
     const prevWidget = document.getElementById(`openweathermap-widget-11`)    
     if(prevWidget){
         prevWidget.remove()
     }      
-    
+    copyWidgetButton.removeEventListener(`click`,copyWidgetCode)
     if(copyWidgetButton){
         copyWidgetButton.style.display = `none`
     }
@@ -470,6 +469,8 @@ function initiateAnimation(){
         fillData()
         changeColorToFinal(changeColorsElems,currTemp)
         moveArrowFinal()
+        widgetButton.style.display = `block`
+        widgetButton.addEventListener(`click`,clickOnWidgetButton)
     }, 2000);
 
     function moveArrow(prevArrowPosition){            
@@ -547,5 +548,27 @@ function moveArrowFinal(){
     arrow.style.transform = `translate(0,-80%) rotate(${arrowPos + currTemp* 6}deg)`
     arrowPos += currTemp * 6
 }
+function clickOnWidgetButton(){
+    widgetButton.removeEventListener(`click`,clickOnWidgetButton)
+    postWidget(cityID)
+    widgetButton.style.display = `none`
 }
+}
+function postWidget(cityID){
+    document.body.insertAdjacentHTML(`afterbegin`,`<div id="openweathermap-widget-11"></div>`)
+
+    let firstScript = document.createElement(`script`)
+    firstScript.src = '//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'
+    document.body.append(firstScript)
+    copyWidgetButton.style.display = `block`
+    copyWidgetButton.addEventListener(`click`,copyWidgetCode)    
+
+    window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 11,cityid: cityID,appid: '5d54f70f564870867a6855f792634f2b',units: 'metric',containerid: 'openweathermap-widget-11',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();   
+}
+function copyWidgetCode(e){
+    const copyText = `<div id="openweathermap-widget-11"></div>
+    <script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script><script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 11,cityid: ${cityID},appid: '5d54f70f564870867a6855f792634f2b',units: 'metric',containerid: 'openweathermap-widget-11',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>`
+    navigator.clipboard.writeText(copyText)
+}
+
 

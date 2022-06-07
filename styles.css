@@ -251,7 +251,6 @@ input[name = text]{
     left: auto;
     bottom: auto;
     transform: none;
-    display: block;
 }
 .copyWidgetButton{
     position: static;
@@ -262,15 +261,15 @@ input[name = text]{
     margin-top: 10px;
 }
 .altWork{
-    display: block;
+    /* display: block; */
     width: 500px;
     height: 100px;
     left: 70vw;
     top: 30vh;
 }
 .showWidget{
-    left: 77vw;
-    top: 50vh;
+    position: relative;
+    bottom: -100px;
 }
 
 
