@@ -2,6 +2,7 @@
 
 html{
     font-family: 'Roboto', sans-serif;
+    overflow: hidden;
 }
 .search{
     height: 40px;
@@ -32,7 +33,7 @@ input[name = text]{
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    min-height: 900px;
+    min-height: 800px;
     min-width: 500px;
     border: 1px solid black;
     position: absolute; 
@@ -246,6 +247,11 @@ input[name = text]{
 .showWidget:hover,.copyWidgetButton:hover,.altWork:hover{
     background: #ed4d41
 }
+.showWidget,.altWork{
+    left: auto;
+    bottom: auto;
+    transform: none;
+}
 .copyWidgetButton{
     position: static;
     transform: none;
@@ -258,7 +264,12 @@ input[name = text]{
     display: block;
     width: 500px;
     height: 100px;
-    top: -150px;
+    right: -130%;
+    top: 200px;
+}
+.showWidget{
+    right: -105%;
+    top: 400px;
 }
 
 
