@@ -63,15 +63,6 @@ let geoResp = await fetch(`https://pika-secret-ocean-49799.herokuapp.com/https:/
     origin: "CORS"
 })
 let geoData = await geoResp.json()
-console.log(geoData)
-let q = 1;
-
-
-
-
-
-
-
 
 const LAT =  +geoData.coord.lat
 const LON =  +geoData.coord.lon
