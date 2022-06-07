@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">        
+    <title>Weather App</title>
+</head>
+<body>  
+    <div class="weatherWrapper">
+        <div class="locationWrapper">
+            <span>Локация</span>
+            <p class="location">...</p>
+        </div>
+        <div class="thermometerWrapper">
+            <div class="outerCircle">  
+                <span data-bcg="red"><p>0</p></span>
+                <span data-bcg="red"><p>5</p></span>
+                <span data-bcg="red"><p>10</p></span>
+                <span data-bcg="red"><p>15</p></span>
+                <span data-bcg="red"><p>20</p></span>
+                <span data-bcg="red"><p>25</p></span>    
+                <span data-bcg="blue"><p>30</p></span>
+                <span data-bcg="blue"><p>35</p></span>
+                <span data-bcg="blue"><p>40</p></span>
+                <span data-bcg="blue"><p>45</p></span>
+                <span data-bcg="blue"><p>50</p></span>
+                <span data-bcg="blue"><p>55</p></span>                     
+                 <div class="innerCircle">
+                    <div class="arrow"><div class="right"></div></div>    
+            </div>
+        </div>
+        </div>
+        <div class="data">Последние метеоданные</div>
+        <div class="currTime">...</div>
+        <div class="tempWrapper">
+            <img src="" alt="" class="tempIcon">
+            <div data-color="blue" class="temp">...</div>
+            <div data-color="blue" class="tempDescr">°C</div>
+        </div>
+        <div class="nextDaysTempWrapper">
+            <div class="nextDaysTemp">
+                <img src="" alt="" class="nextDaysTempIcon">
+                <div class="nextDaysTempDay">Четверг</div>
+                <div class="nextDaysTempDescr">15 °C </div>
+            </div>
+            <div class="nextDaysTemp">
+                <img src="" alt="" class="nextDaysTempIcon">
+                <div class="nextDaysTempDay">Пятница</div>
+                <div class="nextDaysTempDescr">25 °C</div>
+            </div>
+            <div class="nextDaysTemp">
+                <img src="" alt="" class="nextDaysTempIcon">
+                <div class="nextDaysTempDay">Суббота</div>
+                <div class="nextDaysTempDescr"> 19 °C</div>
+            </div>
+            <div class="nextDaysTemp">
+                <img src="" alt="" class="nextDaysTempIcon">
+                <div class="nextDaysTempDay">Воскресенье</div>
+                <div class="nextDaysTempDescr"> 21 °C</div>
+            </div>
+            <div class="nextDaysTemp">
+                <img src="" alt="" class="nextDaysTempIcon">
+                <div class="nextDaysTempDay">Понедельник</div>
+                <div class="nextDaysTempDescr">18 °C </div>
+            </div>
+        </div>
+
+        <form >
+            <img class="search" src="./search.svg" alt="">
+            <input  required placeholder="Введите Ваш город" autofocus name="text" type="text">
+            <input name="submit" class="submitButton" value="Найти" type="Submit">
+        </form>
+        <button class="altWork">Показать пример работы (если нет ВПН или Вы не из России)</button>
+        <button class="showWidget">Хочу виджет!</button>
+    </div>
+
+    <button class="copyWidgetButton">Скопировать HTML-код виджета</button> 
+    
+    
+
+
+
+    <script href="https://" src="./scripts.js"></script> 
+</body>
+</html>

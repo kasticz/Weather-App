@@ -1,0 +1,276 @@
+
+
+html{
+    font-family: 'Roboto', sans-serif;
+}
+.search{
+    height: 40px;
+    width: 40px;
+}
+form{
+    width: 480px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+input{
+    height: 50px;
+    margin-left: 15px;
+    font-size: 20px;
+}
+input[name = submit]{
+    width: 200px;   
+}
+input[name = text]{
+    width: 300px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid black
+}
+.weatherWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 900px;
+    min-width: 500px;
+    border: 1px solid black;
+    position: absolute; 
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background: #f2f3f7;
+    transition: 1s all;
+    box-shadow: -2px -2px 4px 0px #ffffff, 50px 50px 50px 0px rgb(0 0 0 / 25%);
+    border-radius: 5%
+}
+.location{
+    font-weight: 700;
+}
+.outerCircle{
+    height: 350px;
+    width: 350px;
+    background: #f2f3f7;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    position: relative;
+    box-shadow:-6px -6px 8px rgba(255, 255, 255, 0.9), 5px 5px 8px rgba(0, 0, 0, 0.07);
+}
+.innerCircle{
+    height: 250px;
+    width: 250px;
+    background: #f2f3f7;
+    border-radius: 50%;
+    position: relative;
+    box-shadow:-6px -6px 8px rgba(255, 255, 255, 0.9), 5px 5px 8px rgba(0, 0, 0, 0.07);
+}
+.outerCircle span{
+    width: 145px;
+    height: 4px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: 145px 2px;
+    transform: translate(-100%,-50%);
+    font-size: 20px; 
+    transition: 0.4s all;
+      
+}
+.outerCircle span p{ 
+    display: inline-block;
+    margin: 0; 
+    transition: 0.4s all;
+}
+.outerCircle span:nth-child(2){
+    transform: translate(-100%,-50%) rotate(30deg);
+}
+.outerCircle span:nth-child(3){
+    transform: translate(-100%,-50%) rotate(60deg);
+}
+.outerCircle span:nth-child(4){
+    transform: translate(-100%,-50%) rotate(90deg);
+}
+.outerCircle span:nth-child(5){
+    transform: translate(-100%,-50%) rotate(120deg);   
+}
+.outerCircle span:nth-child(6){
+    transform: translate(-100%,-50%) rotate(150deg);   
+}
+.outerCircle span:nth-child(7){
+    transform: translate(-100%,-50%) rotate(180deg); 
+}
+.outerCircle span:nth-child(8){
+    transform: translate(-100%,-50%) rotate(210deg);    
+}
+.outerCircle span:nth-child(9){
+    transform: translate(-100%,-50%) rotate(240deg);    
+}
+.outerCircle span:nth-child(10){
+    transform: translate(-100%,-50%) rotate(270deg);  
+}
+.outerCircle span:nth-child(11){
+    transform: translate(-100%,-50%) rotate(300deg);    
+}
+.outerCircle span:nth-child(12){
+    transform: translate(-100%,-50%) rotate(330deg);  
+}
+.outerCircle span:nth-child(1) p{      
+    transform: translate(-7px,10px)
+}
+.outerCircle span:nth-child(2) p{      
+    transform: translate(-7px,10px) rotate(-30deg)
+}
+.outerCircle span:nth-child(3) p{  
+    transform: translate(-7px,10px) rotate(-60deg)
+}
+.outerCircle span:nth-child(4) p{  
+    transform: translate(-7px,10px) rotate(-90deg)
+}
+.outerCircle span:nth-child(5) p{  
+    transform: translate(-7px,10px) rotate(-120deg)
+}
+.outerCircle span:nth-child(6) p{  
+    transform: translate(-7px,10px) rotate(-150deg)
+}
+.outerCircle span:nth-child(7) p{   
+    transform: translate(-7px,10px) rotate(-180deg)
+}
+.outerCircle span:nth-child(8) p{ 
+    transform: translate(-7px,10px) rotate(-210deg)
+}
+.outerCircle span:nth-child(9) p{ 
+    transform: translate(-7px,10px) rotate(-240deg)
+}
+.outerCircle span:nth-child(10) p{ 
+    transform: translate(-7px,10px) rotate(-270deg)
+}
+.outerCircle span:nth-child(11) p{ 
+    transform: translate(-7px,10px) rotate(-300deg)
+}
+.outerCircle span:nth-child(12) p{ 
+    transform: translate(-7px,10px) rotate(-330deg)
+}
+.outerCircle span p:nth-child(9){  
+    transform: translate(-7px,10px) rotate(-30deg)
+}
+
+.arrow{
+    width: 130px;
+    height: 10px;
+    position: absolute;
+    top: 51%;
+    left: 0;
+    transform-origin: 125px 5px ;
+    transform: translate(0,-80%) rotate(0deg);
+    background: black;
+    transition: 2s all;
+}
+.right{
+    border: solid black;
+    border-width: 0 7px 7px 0;
+    display: inline-block;
+    padding: 8px;
+    transform: rotate(135deg);
+    position: absolute;
+    top: -61%;
+    left: -3;    
+}
+
+.tempWrapper{
+    font-size: 70px;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+.tempIcon{
+    height: 70px;  
+}
+.tempDescr,.tempIcon,.temp{
+    margin-right: 20px;
+    transition: 0.4s all;
+}
+.locationWrapper{
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    font-size: 30px;
+    height: 50px;
+    width: 90%;
+    padding: 5px;
+}.nextDaysTempWrapper{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin: 0 5px;
+    display: none;
+}
+.nextDaysTemp{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    text-align: center;
+    font-size: 20px;
+    margin-right: 20px;    
+}
+.nextDaysTempDay{
+    margin-top: 5px;
+}
+.nextDaysTemp:last-child{
+    margin-right: 0;
+}
+.nextDaysTempIcon{
+    width: 50px;
+}
+.data,.currTime{
+    font-size: 30px;
+}
+.showWidget,.copyWidgetButton,.altWork{
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translate(-50%,0);
+    width: 250px;
+    height: 50px;
+    background:#e42618;
+    color: white;
+    font-size: 30px;
+    display: none;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+.showWidget:hover,.copyWidgetButton:hover,.altWork:hover{
+    background: #ed4d41
+}
+.copyWidgetButton{
+    position: static;
+    transform: none;
+    width: 350px;
+    height: 100px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.altWork{
+    display: block;
+    width: 500px;
+    height: 100px;
+    top: -150px;
+}
+
+
+[data-bcg = "red"]{
+    background: #e42618;
+}
+[data-bcg = "blue"]{
+    background: #0000ff; 
+}
+[data-color = "blue"]{
+    color: #0000ff; 
+}
+[data-color = "red"]{
+    color: #0000ff;
+}
