@@ -64,7 +64,7 @@ let geoResp = await fetch(`https://weatherappqwe.herokuapp.com/https://api.openw
 })
 let geoData = await geoResp.json()
 console.log(geoData)
-
+let q = 1;
 
 
 
