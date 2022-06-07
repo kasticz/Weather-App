@@ -58,7 +58,7 @@ setTimeout(() => {
         arrow.style.transform = `translate(0,-80%) rotate(${arrowPos}deg)`   
     }
 }, 7000);
-let geoResp = await fetch(`https://weatherappqwe.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIKEY}`,{
+let geoResp = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIKEY}`,{
     method: "GET",
     origin: "CORS"
 })
