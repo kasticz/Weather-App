@@ -58,7 +58,10 @@ setTimeout(() => {
         arrow.style.transform = `translate(0,-80%) rotate(${arrowPos}deg)`   
     }
 }, 7000);
-let geoResp = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIKEY}`)
+let geoResp = await fetch(`https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIKEY}`,{
+    method: "GET",
+    origin: "CORS"
+})
 let geoData = await geoResp.json()
 
 
@@ -71,7 +74,7 @@ let geoData = await geoResp.json()
 
 const LAT =  +geoData.coord.lat
 const LON =  +geoData.coord.lon
-let currWeatherResp = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&appid=${APIKEY}`)
+let currWeatherResp = await fetch(`https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&appid=${APIKEY}`)
 
 let currWeatherData = await currWeatherResp.json()
 
@@ -80,7 +83,7 @@ let currWeatherData = await currWeatherResp.json()
 const cityID = geoData.id
 
 
-let nextDaysWeatherResp = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${LAT}&lon=${LON}&appid=${APIKEY}`)
+let nextDaysWeatherResp = await fetch(`https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/forecast?lat=${LAT}&lon=${LON}&appid=${APIKEY}`)
 let nextDaysWeatherData = await nextDaysWeatherResp.json()
 status = true;
 

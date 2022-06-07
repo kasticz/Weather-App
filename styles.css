@@ -251,6 +251,7 @@ input[name = text]{
     left: auto;
     bottom: auto;
     transform: none;
+    display: block;
 }
 .copyWidgetButton{
     position: static;
@@ -264,12 +265,12 @@ input[name = text]{
     display: block;
     width: 500px;
     height: 100px;
-    right: -130%;
-    top: 200px;
+    left: 70vw;
+    top: 30vh;
 }
 .showWidget{
-    right: -105%;
-    top: 400px;
+    left: 77vw;
+    top: 50vh;
 }
 
 
