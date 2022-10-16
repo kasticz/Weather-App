@@ -47,25 +47,23 @@ async function getData(e){
 
 
 let status = false;
-// setTimeout(() => {
-//     if (!status){
-//         alert(`Что то пошло не так. Убедитесь, что город введён корректно или попробуйте  ещё раз. Если не поможет - убедитесь, что у вас работает ВПН или воспользуйтесь кнопкой показа работы приложения без ВПН.`)
-//         clearInterval(changeColorInterval)
-//         clearInterval(moveArrowInterval)    
-//         while(Math.abs(arrowPos % 360) != 0){
-//             arrowPos++;
-//         }
-//         arrow.style.transform = `translate(0,-80%) rotate(${arrowPos}deg)`   
-//     }
-// }, 7000);
 let geoResp = await fetch(`https://pika-secret-ocean-49799.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIKEY}`,{
     method: "GET",
     origin: "CORS"
 })
 let geoData = await geoResp.json()
 
-const LAT =  +geoData.coord.lat
-const LON =  +geoData.coord.lon
+const LAT =  +geoData?.coord?.lat
+const LON =  +geoData?.coord?.lon
+console.log(LAT,LON,geoData)
+if(!LAT || !LON){
+    moveArrowFinal(true)
+    clearInterval(changeColorInterval)
+    clearInterval(moveArrowInterval)
+    document.querySelector(`.location`).textContent = `Локация не найдена`
+    return
+}
+
 let currWeatherResp = await fetch(`https://pika-secret-ocean-49799.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&appid=${APIKEY}`,{    
     method: "GET",
     origin: "CORS"
@@ -303,15 +301,15 @@ function changeColorInt(element,finalColor){
 
 function changeColorToFinal(elems,finalTemp){
     let finalColor;
-    if(finalTemp < 0){
+    if(finalTemp <= 0){
         finalColor = `#9898f3`
-        if(finalTemp < -5) finalColor = `#9898f3`
+        if(finalTemp <= 0) finalColor = `#9898f3`
         if(finalTemp < -15) finalColor = `#6d6df2`
         if(finalTemp < -25) finalColor = `#5252f4`
         if(finalTemp < -35) finalColor = `#1a1af1`
     }else{
         finalColor = `#f6aba6`
-        if(finalTemp > 5 ) finalColor = `#f6aba6`
+        if(finalTemp > 0 ) finalColor = `#f6aba6`
         if(finalTemp > 15) finalColor = `#f48e87`
         if(finalTemp > 25) finalColor = `#ef6f66`
         if(finalTemp > 35) finalColor = `#f1463a`
@@ -327,12 +325,17 @@ function changeColorToFinal(elems,finalTemp){
         }
     }    
 }
-function moveArrowFinal(){
+function moveArrowFinal(fail){
     while(Math.abs(arrowPos % 360) != 0){
         arrowPos++;
     }
+    if(fail){
+        console.log(arrowPos)
+        arrow.style.transform = `translate(0,-80%) rotate(${arrowPos}deg)`
+        return
+    }
     arrow.style.transform = `translate(0,-80%) rotate(${arrowPos + currTemp* 6}deg)`
-    arrowPos += currTemp * 6
+    arrowPos += (currTemp || 0) * 6
 }
 
 
@@ -361,190 +364,4 @@ function copyWidgetCode(e){
 
 }
 form.addEventListener(`submit`,getData)
-
-// const altWorkButton = document.querySelector(`.altWork`)
-// altWorkButton.addEventListener(`click`,altWork)
-
-// function altWork(){
-//     const prevWidget = document.getElementById(`openweathermap-widget-11`)    
-//     if(prevWidget){
-//         prevWidget.remove()
-//     }      
-//     copyWidgetButton.removeEventListener(`click`,copyWidgetCode)
-//     if(copyWidgetButton){
-//         copyWidgetButton.style.display = `none`
-//     }
-//     if(widgetButton){
-//         widgetButton.style.display = `none`
-//     }
-//     let changeColorInterval;
-//     let moveArrowInterval;
-
-//     initiateAnimation()
-    
-//     const location = `Moscow`
-//     const cityID = 524901;
-//     const currTemp = 20
-//     const icons = [`./clouds.png`,`./cloudsandsun.png`,`./clear.png`,`./lightrain.png`,`./rain.png`]
-//     const dates = [`Вторник`, `Среда`, `Четверг`,`Пятница`, `Суббота`]
-//     const temps = [`17`,`18`,`15`,`14`,`10`]
-//     const currDate = [`Понедельник 15:30`]
-//     const currIcon = `./clear.png`
-
-// function fillData(){
-//     nextDaysTempElem.style.display = `flex`
-//     fillNextDays()
-//      currTempIconElem.src = currIcon
-//     fillnextDaysIcons()
-//     fillLocation()
-//     changeSign()    
-
-
-
-//     function fillnextDaysIcons(){  
-//         for(let i = 0; i < nextDaysTemp.length; i++){
-//             nextDaysTemp[i].querySelector(`.nextDaysTempIcon`).src = icons[i];
-//         }      
-//     }
-
-
-//     function fillNextDays(){
-//         currTimeElem.textContent = currDate
-//         currTempElem.textContent = currTemp
-//         for(let i = 0; i < nextDaysTemp.length;i++){
-//             nextDaysTemp[i].querySelector(`.nextDaysTempDescr`).textContent = `${temps[i]} °C`
-//             nextDaysTemp[i].querySelector(`.nextDaysTempDay`).textContent = `${dates[i]}`
-//         }       
-//     }
-//     function fillLocation(){
-//         document.querySelector(`.location`).textContent = `${location}`
-//     }
-//     function changeSign(){
-//         let degreesArr = document.querySelector(`.outerCircle`).querySelectorAll(`p`)
-//         for(let item of degreesArr){
-//             if(item.textContent[0] != `-` && currTemp < 0 ){
-//                 item.textContent = `-${item.textContent}`
-//                 continue;
-//             }
-//             if(item.textContent[0] === `-` && currTemp > 0){
-//                 item.textContent = item.textContent.slice(1)
-//                 continue;
-//             }
-//         }
-//     }
-// }
-
-
-
-
-
-
-// function initiateAnimation(){    
-//     changeColorInterval = setInterval(() => {
-//         for(let elem of changeColorsElems){     
-//             if(Array.isArray(elem)){
-//                 for(let span of elem){
-//                     changeColorInt(span)
-//                 }
-//             }else{
-//                 changeColorInt(elem)
-//             }
-//         }        
-//     }, 300);
-//      moveArrowInterval = setInterval(() => {
-//         moveArrow(arrowPos)
-//     }, 70);
-//     setTimeout(() => {
-//         clearInterval(changeColorInterval);
-//         clearInterval(moveArrowInterval)
-//         fillData()
-//         changeColorToFinal(changeColorsElems,currTemp)
-//         moveArrowFinal()
-//         widgetButton.style.display = `block`
-//         widgetButton.addEventListener(`click`,clickOnWidgetButton)
-//     }, 2000);
-
-//     function moveArrow(prevArrowPosition){            
-//         arrow.style.transform = `translate(0,-80%) rotate(${prevArrowPosition + 5}deg)`
-//         arrowPos += 5
-//     }
-// }
-// function changeColorInt(element,finalColor){ 
-//     const data = element.dataset    
-//     if(data.bcg){
-//         if(data.bcg === `blue`){
-//             element.style.background = finalColor || `${red}`
-//             data.bcg = `red`
-//             return
-//         }
-//         if(data.bcg === `red`){
-//             element.style.background = finalColor || `${blue}`
-//             data.bcg = `blue`
-//             return
-//         }
-//         element.style.background = finalColor || `${blue}`
-//         data.bcg = `blue`
-//         return
-//     }
-//     if(data.color){        
-//         if(data.color === `red`){
-//             element.style.color = finalColor || `${blue}`
-//             data.color = `blue`
-//             return
-//         }
-//         if(data.color === `blue`){
-//             element.style.color = finalColor || `${red}`
-//             data.color = `red`
-//             return;
-//         }
-//         element.style.color = finalColor || `${red}`
-//         data.color = `red`
-//         return;
-//     }
-// }
-
-// function changeColorToFinal(elems,finalTemp){
-//     let finalColor;
-//     if(finalTemp < 0){
-//         finalColor = `#9898f3`
-//         if(finalTemp < -5) finalColor = `#9898f3`
-//         if(finalTemp < -15) finalColor = `#6d6df2`
-//         if(finalTemp < -25) finalColor = `#5252f4`
-//         if(finalTemp < -35) finalColor = `#1a1af1`
-//     }else{
-//         finalColor = `#f6aba6`
-//         if(finalTemp > 5 ) finalColor = `#f6aba6`
-//         if(finalTemp > 15) finalColor = `#f48e87`
-//         if(finalTemp > 25) finalColor = `#ef6f66`
-//         if(finalTemp > 35) finalColor = `#f1463a`
-//         if(finalTemp > 45) finalColor = `#f02112`
-//     }
-//     for(let elem of elems){     
-//         if(Array.isArray(elem)){
-//             for(let span of elem){
-//                 changeColorInt(span,finalColor)
-//             }
-//         }else{
-//             changeColorInt(elem,finalColor)
-//         }
-//     }    
-// }
-
-// function moveArrowFinal(){
-//     console.log(arrowPos,currTemp * 6)
-//     while(Math.abs(arrowPos % 360) != 0){
-//         arrowPos++;
-//     }
-//     console.log(arrowPos,currTemp * 6)
-//     arrow.style.transform = `translate(0,-80%) rotate(${arrowPos + currTemp* 6}deg)`
-//     arrowPos += currTemp * 6
-// }
-// function clickOnWidgetButton(){
-//     widgetButton.removeEventListener(`click`,clickOnWidgetButton)
-//     postWidget(cityID)
-//     widgetButton.style.display = `none`
-// }
-// }
-
-
 

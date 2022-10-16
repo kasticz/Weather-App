@@ -1,4 +1,7 @@
+input{
+    border-radius: 10px;
 
+}
 
 html{
     font-family: 'Roboto', sans-serif;
@@ -21,6 +24,10 @@ input{
 }
 input[name = submit]{
     width: 200px;   
+    cursor: pointer;
+}
+input[name = submit]:hover{
+    background-color: #fff;
 }
 input[name = text]{
     width: 300px;
@@ -285,4 +292,23 @@ input[name = text]{
 }
 [data-color = "red"]{
     color: #0000ff;
+}
+
+.reference{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 20px;
+}
+
+.reference a{
+    text-decoration: none;
+    color:rgb(124, 112, 112)
+}
+
+
+.reference a:hover{
+    text-decoration: underline;
+    color:black
+
 }

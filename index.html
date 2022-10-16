@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="./styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">        
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">  
     <title>Weather App</title>
+    <link rel="icon"   sizes="32x32" type="image/png" href="./rain.png">     
 </head>
 <body>  
     <div class="weatherWrapper">
@@ -73,9 +75,8 @@
             <input  required placeholder="Введите город" autofocus name="text" type="text">
             <input name="submit" class="submitButton" value="Найти" type="Submit">
         </form>
-        <button class="showWidget">Хочу виджет! (работает только с ВПН)</button>
+        <button class="showWidget">Хочу виджет!</button>
     </div>
-    <button class="altWork">Показать пример работы (если нет ВПН или Вы не из России)</button>
     
 
     <button class="copyWidgetButton">Скопировать HTML-код виджета</button> 
@@ -83,7 +84,7 @@
     
 
 
-
+    <div class="reference">Приложение сделано с помоью <a href="https://openweathermap.org/api">OpenWeather</a></div>
     <script href="https://" src="./scripts.js"></script> 
 </body>
 </html>
