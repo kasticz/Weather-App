@@ -55,7 +55,7 @@ let geoData = await geoResp.json()
 
 const LAT =  +geoData?.coord?.lat
 const LON =  +geoData?.coord?.lon
-console.log(LAT,LON,geoData)
+
 if(!LAT || !LON){
     moveArrowFinal(true)
     clearInterval(changeColorInterval)
@@ -153,7 +153,7 @@ function getNextDaysIconState(daysArr){
         const mainState = day.weather["0"].main
         const descrState = day.weather["0"].description        
         if(mainState == `Clouds`){
-            if(descrState.includes("overcast") || descrState.includes("scattered")){
+            if(descrState.includes("overcast") || descrState.includes("broken")){
                 iconsStateArr.push(`./clouds.png`)
                 continue;
             }
@@ -174,6 +174,10 @@ function getNextDaysIconState(daysArr){
         }
         if(mainState == `Snow`){
             iconsStateArr.push(`./snow.png`)
+            continue
+        }
+        if(mainState == `Mist`){
+            iconsStateArr.push(`./mist.png`)
             continue
         }
     }        
@@ -330,7 +334,6 @@ function moveArrowFinal(fail){
         arrowPos++;
     }
     if(fail){
-        console.log(arrowPos)
         arrow.style.transform = `translate(0,-80%) rotate(${arrowPos}deg)`
         return
     }
