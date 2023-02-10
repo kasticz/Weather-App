@@ -1,4 +1,4 @@
-const APIPROXY = "https://api.codetabs.com/v1/proxy?quest=";
+const APIPROXY = "https://api.codetabs.com/v1/proxy/?quest=";
 const form = document.querySelector(`form`)
 const widgetButton = document.querySelector(`.showWidget`) 
 const copyWidgetButton = document.querySelector(`.copyWidgetButton`)
@@ -48,11 +48,13 @@ async function getData(e){
 
 
 let status = false;
-let geoResp = await fetch(`${APIPROXY}https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIKEY}`,{
+let CurrAPILine = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIKEY}`
+let geoResp = await fetch(`${APIPROXY}${encodeURIComponent(CurrAPILine)}`,{
     method: "GET",
     origin: "CORS"
 })
 let geoData = await geoResp.json()
+
 
 const LAT =  +geoData?.coord?.lat
 const LON =  +geoData?.coord?.lon
@@ -65,7 +67,8 @@ if(!LAT || !LON){
     return
 }
 
-let currWeatherResp = await fetch(`${APIPROXY}https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&appid=${APIKEY}`,{    
+CurrAPILine = `https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&appid=${APIKEY}`
+let currWeatherResp = await fetch(`${APIPROXY}${encodeURIComponent(CurrAPILine)}`,{    
     method: "GET",
     origin: "CORS"
 })
@@ -76,8 +79,8 @@ let currWeatherData = await currWeatherResp.json()
 
 const cityID = geoData.id
 
-
-let nextDaysWeatherResp = await fetch(`${APIPROXY}https://api.openweathermap.org/data/2.5/forecast?lat=${LAT}&lon=${LON}&appid=${APIKEY}`,{
+CurrAPILine = `https://api.openweathermap.org/data/2.5/forecast?lat=${LAT}&lon=${LON}&appid=${APIKEY}`
+let nextDaysWeatherResp = await fetch(`${APIPROXY}${encodeURIComponent(CurrAPILine)}`,{
     method: "GET",
     origin: "CORS"
 })
